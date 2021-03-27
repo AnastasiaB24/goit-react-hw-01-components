@@ -5,25 +5,41 @@
 import React from "react"; //обзятельно import React  в каждый файл, чтобы использовать JSX и он мог  скомпилироваться и транспайлиться
 
 // Components
-import Profile from "./components/Profile"; // 1. Profile
-import Statistics from "./components/Statistics"; //2. Statistics
+import Section from "./components/Section/section";
+import Profile from "./components/Profile/Profile";
+import Statistics from "./components/Statistics/Statistics";
+import FriendList from "./components/FriendList/FriendList";
+import TransactionHistory from "./components/TransactionHistory/TransactionHistory";
 
-import userData from "./user.json";
-import statisticalData from "./statistical-data.json";
+import userData from "./data/user.json";
+import statisticalData from "./data/statistical-data.json";
+import friendsData from "./data/friends.json";
+import transactions from "./data/transactions.json";
 
 function App() {
   return (
     <div className="App">
-      <h1>homework-01</h1>
-      {/* 1. рендерим и вставляем часть кода */}
-      <Profile
-        name={userData.name}
-        tag={userData.tag}
-        location={userData.location}
-        avatar={userData.avatar}
-        stats={userData.stats}
-      />
-      <Statistics title="Upload stats" stats={statisticalData} />
+      <Section>
+        <Profile
+          name={userData.name}
+          tag={userData.tag}
+          location={userData.location}
+          avatar={userData.avatar}
+          stats={userData.stats}
+        />
+
+        <Section>
+          <Statistics title="Upload stats" stats={statisticalData} />
+        </Section>
+
+        <Section>
+          <FriendList friendsData={friendsData} />
+        </Section>
+
+        <Section>
+          <TransactionHistory items={transactions} />
+        </Section>
+      </Section>
     </div>
   );
 }
